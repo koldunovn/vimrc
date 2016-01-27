@@ -153,7 +153,28 @@ let g:ctrlp_prompt_mappings = {
 let g:Powerline_symbols = 'fancy'
 "Show Powerline even when there is only one buffer
 set laststatus=2
-set guifont=Menlo\ Regular:h16
+if has("gui_running")
+  if has("gui_gtk2")
+    set guifont=Bitstream\ Vera\ Sans\ Mono\ 16
+  elseif has("gui_photon")
+    set guifont=Courier\ New:s16
+  elseif has("gui_kde")
+    set guifont=Courier\ New/16/-1/5/50/0/0/0/1/0
+  elseif has("x11")
+    set guifont=-*-courier-medium-r-normal-*-*-180-*-*-m-*-*
+  elseif has('gui_macvim')
+    set guifont=Monaco:h14     " OSX.
+  else
+    set guifont=Courier_New:h11:cDEFAULT
+  endif
+ endif
 
+" Better copy & paste
+" " When you want to paste large blocks of code into vim, press F2 before you
+" " paste. At the bottom you should see ``-- INSERT (paste) --``.
+"
+set pastetoggle=<F2>
+set clipboard=unnamed
+"
 
 " "
